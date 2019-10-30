@@ -1,33 +1,25 @@
-// $(document).ready(function() {
-//   var summandsArray = 0;
-//   var summands = [1, 2, 3, 4, 5];
-//   for (var index = 0; index < summands.length; index += 1) {
-//     summandsArray += summands[index];
-//   }
-//   alert(summandsArray);
-//
-// });
+$(document).ready(function(){
+  $("#form").submit(function(event){
+    event.preventDefault();
 
-// $(document).ready(function() {
-//   var num = 0;
-//   while(num < 30){
-//   num = num + 5;
-//   // var newArray = num.split();
-//   $(".results").append(num);
-//   // $(".results").show();
-//   }
-// });
-
-$(document).ready(function() {
-  // for(starting point, end point, increments){
-  //   do things, for each increment.
-  // }
-
-
-  var n1 = 5
-  var n2 = 30
-  var result =[];
-  for  (var index=n1; index <= n2; index += n1) {
-    $("#results").append("<li>" + index + "</li>");
-  }
+    var countTo = parseInt($("#countTo").val());
+    var countBy = parseInt($("#countBy").val());
+    if(!countTo || !countBy){
+     $(".error-message").text("Please enter a number");
+    }
+    else if(isNaN(countTo) || isNaN(countBy)) {
+      $(".error-message").text("Please enter a number");
+    }
+    else if(countTo < 0 || countBy < 0) {
+      $(".error-message").text("Please enter a positive number");
+    }
+    else if(countTo < countBy){
+      $(".error-message").text("Count to number must be greater than count by number");
+    }
+    else {
+      for (var index = countBy; index <= countTo; index += countBy){
+        $("#result").append("<li>" + index + "</li>");
+      }
+    }
+  })
 });
